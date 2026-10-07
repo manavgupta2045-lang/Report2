@@ -1,0 +1,149 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Report Card</title>
+<style>
+/* Layout: a paper-sized report card on a quiet desk surface; fields are editable in place, totals and points calculate themselves. */
+:root{
+  --bg:#e9e7e2;--paper:#ffffff;--ink:#1d1d1d;--line:#555a57;--head:#ddd6cc;
+  --accent:#1f5f3a;--accent-ink:#ffffff;--muted:#6b6b66;--focus:#3b82f6;--calc:#f3f0ea;
+  --font-body:Georgia,"Times New Roman",serif;--font-ui:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1c1b;--muted:#9a9a94;--accent:#2f8a57;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b1c1b;--muted:#9a9a94;--accent:#2f8a57;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 var(--font-body);padding-inline:16px;padding-block:16px 24px}
+.scroll{overflow-x:auto;padding-bottom:4px}
+.paper{background:var(--paper);color:var(--ink);width:820px;margin:0 auto;padding:22px 24px}
+.school{text-align:center;border-bottom:2px solid var(--line);padding-bottom:8px}
+.school h1{margin:0;font-size:24px;color:var(--accent);letter-spacing:.5px}
+.paper .school h1{color:#1f5f3a}
+.school p{margin:2px 0;font-size:13px}
+h2{text-align:center;font-size:15px;text-decoration:underline;margin:8px 0}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:2px 30px;margin:10px 0}
+.info div{display:flex}.info b{width:110px;flex:none}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border:1px solid var(--line);padding:3px 5px;text-align:center}
+th{background:var(--head);color:#1d1d1d;font-size:11.5px}
+td.l,th.l{text-align:left}
+td.calc{background:var(--calc);font-weight:bold;font-variant-numeric:tabular-nums}
+.sk{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.sk table{font-size:11px}.sk td:last-child{width:34px}
+.box{border:1px solid var(--line);margin:12px 0}
+.box h3{margin:0;padding:3px 8px;background:var(--head);color:#1d1d1d;font-size:13px;border-bottom:1px solid var(--line)}
+.box p{margin:0;padding:10px 8px;min-height:44px}
+.keys{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.keys table{font-size:11px}
+[contenteditable]:hover{background:rgba(59,130,246,.07)}
+[contenteditable]:focus{outline:2px solid var(--focus);outline-offset:1px}
+</style>
+
+<div class="scroll"><div class="paper" id="paper">
+
+<div class="school">
+<h1>SCHOOL NAME</h1>
+<p>School address line, City</p>
+<p>Affiliation / Board details | Phone | Email</p>
+</div>
+<h2>TERM-I REPORT CARD - 20XX-20XX</h2>
+
+<div class="info">
+<div><b>Name</b>: Student Name</div><div><b>Class-Sec</b>: XI-A</div>
+<div><b>House</b>: House Name</div><div><b>Student ID</b>: 0000</div>
+<div><b>Attendance</b>: 00 / 000</div><div></div>
+</div>
+
+<table>
+<tr><th rowspan="2">S.No</th><th rowspan="2" colspan="2">Subject</th><th>UNIT TEST<br>(30)</th><th>WEEKLY CLASS TEST (10)</th><th>NOTEBOOK SUBMISSION (5)</th><th>CLASSROOM OBSERVATION (5)</th><th>FIRST TERM EXAM (50)</th><th>TOTAL<br>(100)</th><th>POINTS</th></tr>
+<tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+
+<tr data-g="eng"><td rowspan="2">1</td><td class="l" rowspan="2">English</td><td class="l">English Language</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="calc" rowspan="2" data-t="eng">-</td><td class="calc" rowspan="2" data-p="eng">-</td></tr>
+<tr data-g="eng"><td class="l">English Literature</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td></tr>
+<tr data-g="phy"><td>2</td><td class="l" colspan="2">Physics</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="calc" data-t="phy">-</td><td class="calc" data-p="phy">-</td></tr>
+<tr data-g="che"><td>3</td><td class="l" colspan="2">Chemistry</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="calc" data-t="che">-</td><td class="calc" data-p="che">-</td></tr>
+<tr data-g="mat"><td>4</td><td class="l" colspan="2">Mathematics</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="calc" data-t="mat">-</td><td class="calc" data-p="mat">-</td></tr>
+<tr data-g="bio"><td>5</td><td class="l" colspan="2">Biology</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="calc" data-t="bio">-</td><td class="calc" data-p="bio">-</td></tr>
+<tr data-g="phe"><td>6</td><td class="l" colspan="2">Physical Education</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="m">-</td><td class="calc" data-t="phe">-</td><td class="calc" data-p="phe">-</td></tr>
+</table>
+
+<div class="sk">
+<table><tr><th colspan="2">PERSONAL AND SOCIAL SKILLS</th></tr>
+<tr><td class="l">Is courteous &amp; helpful</td><td>-</td></tr>
+<tr><td class="l">Is confident</td><td>-</td></tr>
+<tr><td class="l">Shows initiative</td><td>-</td></tr>
+<tr><td class="l">Works neatly</td><td>-</td></tr></table>
+<table><tr><th colspan="2">PERSONAL AND SOCIAL SKILLS</th></tr>
+<tr><td class="l">Is regular &amp; punctual</td><td>-</td></tr>
+<tr><td class="l">Completes assignments on time</td><td>-</td></tr>
+<tr><td class="l">Shows respect</td><td>-</td></tr>
+<tr><td class="l">Shows compassion</td><td>-</td></tr>
+<tr><td class="l">Is responsible</td><td>-</td></tr>
+<tr><td class="l">Gets along with peers</td><td>-</td></tr></table>
+</div>
+
+<div class="box"><h3>Teacher's Comment</h3><p>Write the teacher's comment here.</p></div>
+<div><b>Date:</b> DD-MM-YYYY</div>
+
+<div class="keys">
+<table><tr><th colspan="2">Academic Grade</th></tr>
+<tr><th>PERCENTAGE</th><th>POINT</th></tr>
+<tr><td>90-100</td><td>1</td></tr><tr><td>80-89</td><td>2</td></tr><tr><td>70-79</td><td>3</td></tr>
+<tr><td>60-69</td><td>4</td></tr><tr><td>50-59</td><td>5</td></tr><tr><td>45-49</td><td>6</td></tr>
+<tr><td>40-44</td><td>7</td></tr><tr><td>33-39</td><td>8</td></tr><tr><td>Below 33</td><td>9</td></tr></table>
+<table><tr><th>Grade</th><th>PERSONAL AND SOCIAL SKILLS</th></tr>
+<tr><td>A</td><td class="l">Excellent</td></tr><tr><td>B</td><td class="l">Good</td></tr>
+<tr><td>C</td><td class="l">Satisfactory</td></tr><tr><td>D</td><td class="l">Needs Improvement</td></tr><tr><td>E</td><td class="l">Fail</td></tr></table>
+</div>
+
+</div></div>
+
+<script>
+(function(){
+  var paper=document.getElementById('paper');
+
+  function points(p){
+    if(p>=90)return 1; if(p>=80)return 2; if(p>=70)return 3; if(p>=60)return 4;
+    if(p>=50)return 5; if(p>=45)return 6; if(p>=40)return 7; if(p>=33)return 8; return 9;
+  }
+
+  function calc(){
+    paper.querySelectorAll('[data-t]').forEach(function(tc){
+      var g=tc.getAttribute('data-t');
+      var pc=paper.querySelector('[data-p="'+g+'"]');
+      var totals=[],ok=true;
+      paper.querySelectorAll('tr[data-g="'+g+'"]').forEach(function(r){
+        var v=[].map.call(r.querySelectorAll('.m'),function(c){return parseFloat(c.textContent)});
+        if(v.length!==5||v.some(isNaN)){ok=false;return}
+        totals.push(v.reduce(function(a,b){return a+b},0));
+      });
+      if(!ok||!totals.length){tc.textContent='-';pc.textContent='-';return}
+      var t=totals.reduce(function(a,b){return a+b},0)/totals.length;
+      t=Math.round(t*10)/10;
+      tc.textContent=String(t);
+      pc.textContent=String(points(t));
+    });
+  }
+
+  function makeEditable(){
+    paper.querySelectorAll('td,th,h1,h2,p,div').forEach(function(e){
+      if(e.classList.contains('calc'))return;
+      if(!e.querySelector('table,div,td,th,p,h1,h2'))e.setAttribute('contenteditable','true');
+    });
+  }
+
+  paper.addEventListener('input',calc);
+  paper.addEventListener('keydown',function(e){
+    if(e.key==='Enter'&&e.target.closest('td,th')){e.preventDefault();e.target.blur()}
+  });
+  paper.addEventListener('paste',function(e){
+    var el=e.target.closest('[contenteditable]');
+    if(!el)return;
+    e.preventDefault();
+    var text=(e.clipboardData||window.clipboardData).getData('text/plain');
+    document.execCommand('insertText',false,text);
+  });
+
+  makeEditable();
+  calc();
+})();
+</script>
+
+</body></html>
