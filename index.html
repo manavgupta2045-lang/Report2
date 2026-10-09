@@ -1,20 +1,21 @@
 <title>Report Card</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 /* Layout: a paper-sized report card on a quiet desk surface; fields are editable in place, totals and points calculate themselves. */
 :root{
-  --bg:#e9e7e2;--paper:#ffffff;--ink:#1d1d1d;--line:#555a57;--head:#ddd6cc;
+  --bg:#ffffff;--paper:#ffffff;--ink:#1d1d1d;--line:#555a57;--head:#ddd6cc;
   --accent:#1f5f3a;--accent-ink:#ffffff;--muted:#6b6b66;--focus:#3b82f6;--calc:#f3f0ea;
   --font-body:Georgia,"Times New Roman",serif;--font-ui:system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1c1b;--muted:#9a9a94;--accent:#2f8a57;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#1b1c1b;--muted:#9a9a94;--accent:#2f8a57;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#ffffff;--muted:#9a9a94;--accent:#2f8a57;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#ffffff;--muted:#9a9a94;--accent:#2f8a57;color-scheme:dark}
 *{box-sizing:border-box;font-family:var(--font-body)}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 var(--font-body);padding-inline:16px;padding-block:0 24px}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding-block:12px;font:13px var(--font-ui);color:var(--muted)}
 .bar button{font:inherit;padding:7px 14px;border:0;border-radius:6px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
 .bar button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-.scroll{overflow-x:auto;padding-bottom:4px}
-.paper{background:var(--paper);color:var(--ink);width:820px;margin:0 auto;padding:22px 24px}
+.scroll{overflow:hidden}
+.paper{background:var(--paper);color:var(--ink);width:820px;margin:0 auto;padding:22px 24px;transform-origin:top left}
 .school{text-align:center;border-bottom:2px solid var(--line);padding-bottom:8px}
 .school h1{margin:0;font-size:24px;color:var(--accent);letter-spacing:.5px}
 .paper .school h1{color:#1f5f3a}
@@ -39,6 +40,9 @@ td.calc{background:var(--calc);font-weight:bold;font-variant-numeric:tabular-num
 .keys table{font-size:11px}
 [contenteditable]:hover{background:rgba(59,130,246,.07)}
 [contenteditable]:focus{outline:2px solid var(--focus);outline-offset:1px}
+body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (max-width:860px){body{padding-inline:8px}.paper{margin:0}}
+@media print{.scroll{height:auto!important}.paper{transform:none!important}}
 </style>
 
 
@@ -155,5 +159,22 @@ td.calc{background:var(--calc);font-weight:bold;font-variant-numeric:tabular-num
 
   makeEditable();
   calc();
+})();
+</script>
+
+<script>
+(function(){
+  var paper=document.getElementById('paper'),wrap=paper.parentElement,W=820;
+  function fit(){
+    var k=Math.min(1,wrap.clientWidth/W);
+    if(k>=1){paper.style.transform='';wrap.style.height='';return}
+    paper.style.transform='scale('+k+')';
+    wrap.style.height=Math.ceil(paper.offsetHeight*k)+'px';
+  }
+  window.addEventListener('resize',fit);
+  window.addEventListener('orientationchange',fit);
+  window.addEventListener('load',fit);
+  if(window.ResizeObserver)new ResizeObserver(fit).observe(paper);
+  fit();
 })();
 </script>
